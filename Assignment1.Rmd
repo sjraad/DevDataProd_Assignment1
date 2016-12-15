@@ -1,0 +1,51 @@
+---
+title: "Best ski resort in Europe"
+author: "SJ Raad"
+date: "12/14/2016"
+output: ioslides_presentation
+css: style.css
+---
+
+## Top 20 ski resorts in Europe
+
+```{r, echo=FALSE}
+library(leaflet)
+skiIcon <- makeIcon(
+  iconUrl = "./skiing1.png",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+resortLatLong <- data.frame(
+  lat = c(47.2729, 45.5723, 42.5087, 46.6242, 46.3130, 46.0961, 47.1296, 45.2982, 46.4718, 45.8569, 45.9337, 45.9237, 46.0207, 45.4147, 46.5405, 45.7969, 47.4492, 45.4480, 47.2112, 46.4908),
+  lng = c(12.7597, 6.8297, 1.5351, 8.0414, 7.4872, 7.2286, 10.2682, 6.5824, 7.2866, 6.6177, 7.6292, 6.8694, 7.7491, 6.6347, 12.1357, 6.9690, 12.3925, 6.9802, 10.1447, 9.8355))
+
+resortSites <- c(
+  "<a href='http://www.zellamsee-kaprun.com/en/activities/ski-board'><strong>#20. Zell am See-Kaprun, Austria</strong></a>",
+  "<a href='http://www.lesarcs.com/'><stong>#19. Les Arcs/La Plagne, France</strong></a>",
+  "<a href='https://www.grandvalira.com/'><strong>#18. Grandvalira, Andorra</strong></a>",
+  "<a href='https://grindelwald.ch/de/winter/'><strong>#17 Grindelwald, Switzerland</strong></a>",
+  "<a href='http://www.crans-montana.ch/'><strong>#16 Crans-Montana, Switzerland</strong></a>",
+  "<a href='http://www.verbier.ch/'><strong>#15 Verbier, Switzerland</strong></a>",
+  "<a href='http://www.stantonamarlberg.com/en'><strong>#14 St. Anton, Austria</strong></a>",
+  "<a href='http://www.valthorens.com/en/home-page.1.html'><strong>#13 Val Thorens, France</strong></a>",
+  "<a href='http://www.gstaad.ch/en/'><strong>#12 Gstaad, Switzerland</strong></a>",
+  "<a href='http://megeve.com/'><strong>#11 Megève, France</strong></a>",
+  "<a href='http://www.cervinia.it/pages/Home_i_en/211'><strong>#10 Cervinia, Italy</strong></a>",
+  "<a href='http://www.chamonix.com/chamonix-mont-blanc,0,en.html'><strong>#9 Chamonix–Mont Blanc, France</strong></a>",
+  "<a href='http://www.zermatt.ch/en'><strong>#8 Zermatt, Switzerland</strong></a>",
+  "<a href='http://www.courchevel.com/'><strong>#7 Courchevel, France</strong></a>",
+  "<a href='http://www.dolomitisuperski.com/en/ski-area/cortina'><strong>#6 Cortina d'Ampezzo, Italy</strong></a>",
+  "<a href='https://www.lovecourmayeur.com/'><strong>#5 Courmayeur, Italy</strong></a>",
+  "<a href='https://www.kitzbuehel.com/en'><strong>#4 Kitzbühel, Austria</strong></a>",
+  "<a href='http://www.valdisere.com/en/'><strong>#3 Val d'Isère, France</strong></a>",
+  "<a href='http://www.lechzuers.com/skiing'><strong>#2 Lech Zürs am Alberg, Austria</strong></a>",
+  "<a href='https://www.stmoritz.ch/'><strong>#1 St. Moritz, Switzerland</strong></a>"
+)
+
+resortLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = skiIcon, popup = resortSites, clusterOptions = markerClusterOptions())
+```
+*Source: Conde Nast Traveler (http://www.cntraveler.com/galleries/2015-01-06/best-ski-resorts-in-europe-alps-readers-choice-awards-2014) <br> written by David Jeffreys and Betsy Blumenthal - November 11, 2016*
